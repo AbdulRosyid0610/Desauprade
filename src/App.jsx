@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -20,109 +20,120 @@ import PetaWilayah from './components/pages/petawilayah'
 import CCTV from './components/pages/CCTV'
 
 // ==========================================
-// IMPORT LOGIN & ADMIN (SESUAI STRUKTUR FOLDER ANDA)
+// LOGIN & ADMIN
 // ==========================================
-import Login from './components/Login'                  // Login ada di folder pages
-import AdminDashboard from './components/Admin/AdminDashboard' // Admin ada di folder Admin
+import Login from './components/Login'
+import AdminDashboard from './components/Admin/AdminDashboard'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+
+  // Login dan Admin tidak memakai Navbar/Footer
+  const isAdminPage = location.pathname === '/admin/dashboard'
+  const isLoginPage = location.pathname === '/login'
+
+  const isPublicPage = !isLoginPage && !isAdminPage
 
   return (
     <div className="App">
-      
-      {/* 
-         ★ UPGRADE: 
-         Navbar dipindahkan ke dalam setiap halaman publik.
-         Login & AdminDashboard otomatis TIDAK memiliki Navbar.
-      */}
+
+      {/* ==========================================
+          NAVBAR - HANYA HALAMAN PUBLIK
+          ========================================== */}
+      {isPublicPage && (
+        <Navbar
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
+      )}
 
       <Routes>
-        {/* Halaman Publik (Dengan Navbar) */}
-        <Route path="/" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <Beranda />
-          </>
-        } />
-        
-        <Route path="/profile" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <Profil />
-          </>
-        } />
-        
-        <Route path="/berita" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <Berita />
-          </>
-        } />
-        
-        <Route path="/umkm" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <UMKM />
-          </>
-        } />
-        
-        <Route path="/energi" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <Energi />
-          </>
-        } />
-        
-        <Route path="/layanan" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <Layanan />
-          </>
-        } />
-        
-        <Route path="/layanan/form" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <LayananForm />
-          </>
-        } />
-        
-        <Route path="/statistik" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <Statistik />
-          </>
-        } />
-        
-        <Route path="/aparat" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <Aparat />
-          </>
-        } />
-        
-        <Route path="/peta" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <PetaWilayah />
-          </>
-        } />
-        
-        <Route path="/cctv" element={
-          <>
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <CCTV />
-          </>
-        } />
 
-        {/* ★ HALAMAN LOGIN & ADMIN (TANPA NAVBAR & TANPA FOOTER) ★ */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        {/* ==========================================
+            HALAMAN PUBLIK
+            ========================================== */}
+
+        <Route
+          path="/"
+          element={<Beranda />}
+        />
+
+        <Route
+          path="/profile"
+          element={<Profil />}
+        />
+
+        <Route
+          path="/berita"
+          element={<Berita />}
+        />
+
+        <Route
+          path="/umkm"
+          element={<UMKM />}
+        />
+
+        <Route
+          path="/energi"
+          element={<Energi />}
+        />
+
+        <Route
+          path="/layanan"
+          element={<Layanan />}
+        />
+
+        <Route
+          path="/layanan/form"
+          element={<LayananForm />}
+        />
+
+        <Route
+          path="/statistik"
+          element={<Statistik />}
+        />
+
+        <Route
+          path="/aparat"
+          element={<Aparat />}
+        />
+
+        <Route
+          path="/peta"
+          element={<PetaWilayah />}
+        />
+
+        <Route
+          path="/cctv"
+          element={<CCTV />}
+        />
+
+        {/* ==========================================
+            LOGIN
+            ========================================== */}
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        {/* ==========================================
+            ADMIN
+            ========================================== */}
+
+        <Route
+          path="/admin/dashboard"
+          element={<AdminDashboard />}
+        />
+
       </Routes>
 
-      {/* Footer tetap muncul di semua halaman publik */}
-      <Footer />
+      {/* ==========================================
+          FOOTER - HANYA HALAMAN PUBLIK
+          ========================================== */}
+      {isPublicPage && <Footer />}
+
     </div>
   )
 }
