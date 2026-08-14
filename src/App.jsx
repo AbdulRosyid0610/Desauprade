@@ -27,18 +27,21 @@ import AdminDashboard from './components/Admin/AdminDashboard'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+
   const location = useLocation()
 
-  // Login dan Admin tidak menggunakan Navbar/Footer
+  // Login dan Admin tidak memakai Navbar/Footer
   const isLoginPage = location.pathname === '/login'
-  const isAdminPage = location.pathname.startsWith('/admin')
+  const isAdminPage = location.pathname === '/admin/dashboard'
 
   const isPublicPage = !isLoginPage && !isAdminPage
 
   return (
     <div className="App">
 
-      {/* NAVBAR - hanya halaman publik */}
+      {/* ==========================================
+          NAVBAR - HANYA HALAMAN PUBLIK
+      ========================================== */}
       {isPublicPage && (
         <Navbar
           menuOpen={menuOpen}
@@ -48,44 +51,79 @@ function App() {
 
       <Routes>
 
-        {/* ==============================
+        {/* ==========================================
             HALAMAN PUBLIK
-        ============================== */}
+        ========================================== */}
 
-        <Route path="/" element={<Beranda />} />
+        <Route
+          path="/"
+          element={<Beranda />}
+        />
 
-        <Route path="/profile" element={<Profil />} />
+        <Route
+          path="/profile"
+          element={<Profil />}
+        />
 
-        <Route path="/berita" element={<Berita />} />
+        <Route
+          path="/berita"
+          element={<Berita />}
+        />
 
-        <Route path="/umkm" element={<UMKM />} />
+        <Route
+          path="/umkm"
+          element={<UMKM />}
+        />
 
-        <Route path="/energi" element={<Energi />} />
+        <Route
+          path="/energi"
+          element={<Energi />}
+        />
 
-        <Route path="/layanan" element={<Layanan />} />
+        <Route
+          path="/layanan"
+          element={<Layanan />}
+        />
 
-        <Route path="/layanan/form" element={<LayananForm />} />
+        <Route
+          path="/layanan/form"
+          element={<LayananForm />}
+        />
 
-        <Route path="/statistik" element={<Statistik />} />
+        <Route
+          path="/statistik"
+          element={<Statistik />}
+        />
 
-        <Route path="/aparat" element={<Aparat />} />
+        <Route
+          path="/aparat"
+          element={<Aparat />}
+        />
 
-        <Route path="/peta" element={<PetaWilayah />} />
+        <Route
+          path="/peta"
+          element={<PetaWilayah />}
+        />
 
-        <Route path="/cctv" element={<CCTV />} />
+        <Route
+          path="/cctv"
+          element={<CCTV />}
+        />
 
-        {/* ==============================
+        {/* ==========================================
             LOGIN
-        ============================== */}
+            TANPA NAVBAR & FOOTER
+        ========================================== */}
 
         <Route
           path="/login"
           element={<Login />}
         />
 
-        {/* ==============================
+        {/* ==========================================
             ADMIN
-        ============================== */}
+            TANPA NAVBAR & FOOTER
+        ========================================== */}
 
         <Route
           path="/admin/dashboard"
@@ -94,7 +132,9 @@ function App() {
 
       </Routes>
 
-      {/* FOOTER - hanya halaman publik */}
+      {/* ==========================================
+          FOOTER - HANYA HALAMAN PUBLIK
+      ========================================== */}
       {isPublicPage && <Footer />}
 
     </div>
