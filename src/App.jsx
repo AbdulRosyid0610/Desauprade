@@ -20,224 +20,109 @@ import PetaWilayah from './components/pages/petawilayah'
 import CCTV from './components/pages/CCTV'
 
 // ==========================================
-// IMPORT LOGIN & ADMIN
+// IMPORT LOGIN & ADMIN (SESUAI STRUKTUR FOLDER ANDA)
 // ==========================================
-import Login from './components/Login'
-import AdminDashboard from './components/Admin/AdminDashboard'
+import Login from './components/Login'                  // Login ada di folder pages
+import AdminDashboard from './components/Admin/AdminDashboard' // Admin ada di folder Admin
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <div className="App">
+      
+      {/* 
+         ★ UPGRADE: 
+         Navbar dipindahkan ke dalam setiap halaman publik.
+         Login & AdminDashboard otomatis TIDAK memiliki Navbar.
+      */}
+
       <Routes>
+        {/* Halaman Publik (Dengan Navbar) */}
+        <Route path="/" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Beranda />
+          </>
+        } />
+        
+        <Route path="/profile" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Profil />
+          </>
+        } />
+        
+        <Route path="/berita" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Berita />
+          </>
+        } />
+        
+        <Route path="/umkm" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <UMKM />
+          </>
+        } />
+        
+        <Route path="/energi" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Energi />
+          </>
+        } />
+        
+        <Route path="/layanan" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Layanan />
+          </>
+        } />
+        
+        <Route path="/layanan/form" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <LayananForm />
+          </>
+        } />
+        
+        <Route path="/statistik" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Statistik />
+          </>
+        } />
+        
+        <Route path="/aparat" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Aparat />
+          </>
+        } />
+        
+        <Route path="/peta" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <PetaWilayah />
+          </>
+        } />
+        
+        <Route path="/cctv" element={
+          <>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <CCTV />
+          </>
+        } />
 
-        {/* ==========================================
-            HALAMAN BERANDA
-        ========================================== */}
-        <Route
-          path="/"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <Beranda />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            PROFIL
-        ========================================== */}
-        <Route
-          path="/profile"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <Profil />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            BERITA
-        ========================================== */}
-        <Route
-          path="/berita"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <Berita />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            UMKM
-        ========================================== */}
-        <Route
-          path="/umkm"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <UMKM />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            ENERGI
-        ========================================== */}
-        <Route
-          path="/energi"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <Energi />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            LAYANAN
-        ========================================== */}
-        <Route
-          path="/layanan"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <Layanan />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            FORM LAYANAN
-        ========================================== */}
-        <Route
-          path="/layanan/form"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <LayananForm />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            STATISTIK
-        ========================================== */}
-        <Route
-          path="/statistik"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <Statistik />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            APARAT
-        ========================================== */}
-        <Route
-          path="/aparat"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <Aparat />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            PETA WILAYAH
-        ========================================== */}
-        <Route
-          path="/peta"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <PetaWilayah />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            CCTV
-        ========================================== */}
-        <Route
-          path="/cctv"
-          element={
-            <>
-              <Navbar
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-              />
-              <CCTV />
-              <Footer />
-            </>
-          }
-        />
-
-        {/* ==========================================
-            LOGIN
-            Tanpa Navbar & Footer
-        ========================================== */}
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-
-        {/* ==========================================
-            ADMIN DASHBOARD
-            Tanpa Navbar & Footer
-        ========================================== */}
-        <Route
-          path="/admin/dashboard"
-          element={<AdminDashboard />}
-        />
-
+        {/* ★ HALAMAN LOGIN & ADMIN (TANPA NAVBAR & TANPA FOOTER) ★ */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
+
+      {/* Footer tetap muncul di semua halaman publik */}
+      <Footer />
     </div>
   )
 }
